@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="display-1 text-light">Restaurant Review App</h1>
+{% if session.user_id %}
+
+{% else %}
+<h2 class="text-light">Find top restaurants near you</h2>
+{% endif %}
+
+{% endblock %}

@@ -5,7 +5,7 @@ This is a project for the University of Helsinki Database application 2023 cours
 ## Functionality
 
 The app has the following functionality:
-- Users can register and login or create a new account
+- Users can login or create a new account
 - Users can see the restaurants from map and can click on the markers to see the restaurant details
 - Users can review (stars and comments) restaurants and read the reviews
 - Users can search restaurants by tags
