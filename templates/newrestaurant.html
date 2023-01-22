@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="newrest-clean">
+    <form class="row g-3" method="post" action="/newrestaurant">
+        <h2 class="sr-only">Add Restaurant</h2>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        <div class="col-12">
+          <input class="form-control" type="text" name="name" placeholder="Restaurant Name">
+        </div>
+        <div class="col-12">
+          <input class="form-control" type="text" name="address" placeholder="Street Address">
+        </div>
+        <div class="row g-3">
+          <div class="col-6">
+            <input class="form-control" type="text" name="postnumber" placeholder="Post Number">
+          </div>
+          <div class="col-6">
+            <input class="form-control" type="text" name="city" placeholder="City">
+          </div>
+        </div>
+        <div class="row g-3">
+          <div class="col-6">
+            <input class="form-control" type="text" name="latitude" placeholder="Latitude">
+          </div>
+          <div class="col-6">
+            <input class="form-control" type="text" name="longitude" placeholder="Longitude">
+          </div>
+        </div>
+        <div class="col-12">
+          <input class="form-control" type="text" name="website" placeholder="Website">
+        </div>
+        <!-- <div class="row g-3">
+          <div class="col-3">
+            <span class="form-text">Monday</span>
+          </div>
+          <div class="col-3">
+            <input class="form-control" type="text" name="mondayopen" placeholder="Open">
+          </div>
+          <div class="col-3">
+            <input class="form-control" type="text" name="mondayclose" placeholder="Close">
+          </div>
+          <div class="col-3">
+            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+            <label class="form-check-label" for="flexCheckDefault">
+              Closed
+            </label>  
+          </div>
+        </div> -->
+        <div class="col-6">
+          <button class="btn btn-danger btn-block" type="reset">Reset</button>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-primary btn-block" type="submit">Add</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

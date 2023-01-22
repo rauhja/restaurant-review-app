@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, session, flash
 import users
+import restaurants
 
 
 @app.route("/")
@@ -41,3 +42,21 @@ def signup():
         else:
             flash("Username already taken")
             return redirect("/signup")
+
+@app.route("/newrestaurant", methods=["GET", "POST"])
+def addrestaurant():
+    if request.method == "GET":
+        return render_template("newrestaurant.html")
+    if request.method == "POST":
+        name = request.form["name"]
+        address = request.form["address"]
+        postnumber = request.form["postnumber"]
+        city = request.form["city"]
+        latitude = request.form["latitude"]
+        longitude = request.form["longitude"]
+        website = request.form["website"]
+        if restaurants.add(name, address, postnumber, city, latitude, longitude, website):
+            return redirect("/")
+        else:
+            flash("Restaurant already exists")
+            return redirect("/newrestaurant")
