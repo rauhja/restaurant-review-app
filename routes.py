@@ -56,7 +56,11 @@ def addrestaurant():
         longitude = request.form["longitude"]
         website = request.form["website"]
         if restaurants.add(name, address, postnumber, city, latitude, longitude, website):
-            return redirect("/")
+            return redirect("/newrestaurant")
         else:
             flash("Restaurant already exists")
             return redirect("/newrestaurant")
+
+@app.route("/restaurants")
+def listrestaurants():
+    return render_template("restaurants.html", restaurants=restaurants.list())

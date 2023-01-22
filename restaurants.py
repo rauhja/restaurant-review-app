@@ -8,3 +8,8 @@ def add(name, address, postnumber, city, latitude, longitude, website):
     except:
         return False
     return True
+
+def list():
+    sql = "SELECT * FROM restaurants ORDER BY name"
+    result = db.session.execute(sql)
+    return result.fetchall() 
