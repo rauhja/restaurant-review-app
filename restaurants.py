@@ -13,3 +13,8 @@ def list():
     sql = "SELECT * FROM restaurants ORDER BY name"
     result = db.session.execute(sql)
     return result.fetchall() 
+
+def get(id):
+    sql = "SELECT * FROM restaurants WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchone()

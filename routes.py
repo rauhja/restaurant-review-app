@@ -64,3 +64,7 @@ def addrestaurant():
 @app.route("/restaurants")
 def listrestaurants():
     return render_template("restaurants.html", restaurants=restaurants.list())
+
+@app.route("/restaurants/<int:id>")
+def restaurant(id):
+    return render_template("restaurant.html", restaurant=restaurants.get(id))

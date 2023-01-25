@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+{% if session.user_id %}
+<div class="mt-5">
+    <h2 class="text-light">Restaurant</h2>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ restaurant.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ restaurant.address }}</h6>
+                <p class="card-text">{{ restaurant.postnumber }} {{ restaurant.city }}</p>
+                <a href="{{restaurant.website}}"class="card-link">{{ restaurant.website }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<h3 class="text-center text-light">You need to log in to see restaurants</h3>
+{% endif %}
+{% endblock %}
