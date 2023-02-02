@@ -22,3 +22,10 @@ The app is still under development. The following features are added:
 - [x] Users can add new restaurant
 
 App is deployed to Fly.io: https://restaurant-review-app.fly.dev/
+
+You can use the following credentials to login:
+
+- username: test
+- password: tester
+
+or you can create a new account.
