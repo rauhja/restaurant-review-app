@@ -31,3 +31,8 @@ def delete(id):
     except:
         return False
     return True
+
+def search(query):
+    sql = "SELECT * FROM restaurants WHERE name LIKE :query ORDER BY name"
+    result = db.session.execute(sql, {"query":"%" + query + "%"})
+    return result.fetchall()

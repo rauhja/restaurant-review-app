@@ -131,3 +131,7 @@ h1 {
 .ms-n5 {
   margin-left: -40px;
 }
+
+.coord {
+  text-align: start;
+}

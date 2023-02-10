@@ -111,3 +111,7 @@ def deletereview(id, restaurant_id):
     else:
         flash("Error")
         return redirect("/")
+    
+@app.route("/result")
+def result():
+    return render_template("restaurants.html", restaurants=restaurants.search(request.args["query"]))
