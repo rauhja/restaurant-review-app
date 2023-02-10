@@ -1,20 +1,49 @@
 {% extends "base.html" %}
 {% block content %}
 {% if session.user_id %}
-<h2 class="text-light">Restaurants</h2>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-{% for restaurant in restaurants %}
-    <div class="col">
-        <div class="card">
-            <div class="card-body">
-                <a href="/restaurants/{{ restaurant.id }}" class="card-link"><h5 class="card-title">{{ restaurant.name }}</h5></a>
-                <h6 class="card-subtitle mb-2 text-muted">{{ restaurant.address }}</h6>
-                <p class="card-text">{{ restaurant.postnumber }} {{ restaurant.city }}</p>
-                <a href="{{restaurant.website}}"class="card-link">{{ restaurant.website }}</a>
-            </div>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-5 mx-auto">
+            <div class="input-group rounded">
+                <input type="search" name="query" class="form-control rounded" placeholder="Search restaurant" aria-label="Search" aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search-heart" viewBox="0 0 16 16">
+                        <path d="M6.5 4.482c1.664-1.673 5.825 1.254 0 5.018-5.825-3.764-1.664-6.69 0-5.018Z"/>
+                        <path d="M13 6.5a6.471 6.471 0 0 1-1.258 3.844c.04.03.078.062.115.098l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1.007 1.007 0 0 1-.1-.115h.002A6.5 6.5 0 1 1 13 6.5ZM6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11Z"/>
+                    </svg>
+                </span>
+              </div>
         </div>
     </div>
-{% endfor %}
+    <h2 class="text-light mt-5">Restaurants</h2>
+    <div class="rest-list">
+        <div class="row">
+            <table class="table table-hover mt-2">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Post Number</th>
+                        <th scope="col">City</th>
+                        <th scope="col">Website</th>
+                        <th scope="col">Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for restaurant in restaurants %}
+                    <tr>
+                        <td><a href="/restaurants/{{ restaurant.id }}">{{ restaurant.name }}</a></td>
+                        <td>{{ restaurant.address }}</td>
+                        <td>{{ restaurant.postnumber }}</td>
+                        <td>{{ restaurant.city }}</td>
+                        <td><a href="{{restaurant.website}}">{{ restaurant.website }}</a></td>
+                        <td>rating</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% else %}
 <h3 class="text-center text-light">You need to log in to see restaurants</h3>

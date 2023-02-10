@@ -111,3 +111,23 @@ h1 {
   text-indent:8px;
   height:42px;
 }
+
+.rest-list {
+  padding:80px 0;
+  max-width:80%;
+  width:90%;
+  margin:0 auto;
+  background-color:#ffffff;
+  padding:40px;
+  border-radius:0.375rem;
+  color:#505e6c;
+  box-shadow:1px 1px 5px rgba(0,0,0,0.1);
+}
+
+.rest-list table{
+  text-align: start;
+}
+
+.ms-n5 {
+  margin-left: -40px;
+}
