@@ -33,7 +33,13 @@ def signup():
         return render_template("signup.html")
     if request.method == "POST":
         username = request.form["username"]
+        if len(username) < 3:
+            flash("Username must be at least 3 characters long")
+            return redirect("/signup")
         password = request.form["password"]
+        if len(password) < 6:
+            flash("Password must be at least 6 characters long")
+            return redirect("/signup")
         password2 = request.form["password2"]
         if password != password2:
             flash("Passwords do not match")
@@ -82,6 +88,15 @@ def deleterestaurant(id):
 def sendreview():
     restaurant_id = request.form["restaurant_id"]
     review = request.form["review"]
+    if review == "":
+        flash("Please write a review")
+        return redirect("/restaurants/" + restaurant_id)
+    if len(review) > 255:
+        flash("Review must be less than 255 characters")
+        return redirect("/restaurants/" + restaurant_id)
+    if "rating" not in request.form:
+        flash("Please rate the restaurant")
+        return redirect("/restaurants/" + restaurant_id)
     rating = request.form["rating"]
     if reviews.addreview(restaurant_id, review, rating):
         return redirect("/restaurants/" + restaurant_id)

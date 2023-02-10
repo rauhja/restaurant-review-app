@@ -27,7 +27,9 @@
                         <th scope="col">City</th>
                         <th scope="col">Website</th>
                         <th scope="col">Rating</th>
+                        {% if session.user_role == 1 %}
                         <th scope="col">Delete</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
