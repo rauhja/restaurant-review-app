@@ -15,3 +15,12 @@ CREATE TABLE restaurants (
     longitude VARCHAR(255) NOT NULL,
     website VARCHAR(255),
 );
+
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    restaurant_id INTEGER REFERENCES restaurants(id),
+    user_id INTEGER REFERENCES users(id),
+    rating INTEGER NOT NULL,
+    review VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);

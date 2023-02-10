@@ -34,3 +34,6 @@ def signup(username, password):
 
 def user_id():
     return session.get("user_id",0)
+
+def user_role():
+    return session.get("user_role", 0)

@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, redirect, session, flash
 import users
 import restaurants
+import reviews
 
 
 @app.route("/")
@@ -67,4 +68,23 @@ def listrestaurants():
 
 @app.route("/restaurants/<int:id>")
 def restaurant(id):
-    return render_template("restaurant.html", restaurant=restaurants.get(id))
+    return render_template("restaurant.html", restaurant=restaurants.get(id), reviews=reviews.getreview(id))
+
+@app.route("/send", methods=["POST"])
+def sendreview():
+    restaurant_id = request.form["restaurant_id"]
+    review = request.form["review"]
+    rating = request.form["rating"]
+    if reviews.addreview(restaurant_id, review, rating):
+        return redirect("/restaurants/" + restaurant_id)
+    else:
+        flash("Error")
+        return redirect("/")
+
+@app.route("/deletereview/<restaurant_id>/<int:id>")
+def deletereview(id, restaurant_id):
+    if reviews.deletereview(id):
+        return redirect("/restaurants/" + restaurant_id)
+    else:
+        flash("Error")
+        return redirect("/")
