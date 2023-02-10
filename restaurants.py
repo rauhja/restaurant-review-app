@@ -1,4 +1,5 @@
 from db import db
+import users
 
 def add(name, address, postnumber, city, latitude, longitude, website):
     try:
@@ -18,3 +19,15 @@ def get(id):
     sql = "SELECT * FROM restaurants WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()
+
+def delete(id):
+    try:
+        user_role = users.user_role()
+        if user_role == 0:
+            return False
+        sql = "DELETE FROM restaurants WHERE id=:id"
+        db.session.execute(sql, {"id":id})
+        db.session.commit()
+    except:
+        return False
+    return True

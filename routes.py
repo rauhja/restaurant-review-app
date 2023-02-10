@@ -70,6 +70,14 @@ def listrestaurants():
 def restaurant(id):
     return render_template("restaurant.html", restaurant=restaurants.get(id), reviews=reviews.getreview(id))
 
+@app.route("/deleterestaurant/<int:id>")
+def deleterestaurant(id):
+    if restaurants.delete(id):
+        return redirect("/restaurants")
+    else:
+        flash("Error")
+        return redirect("/")
+
 @app.route("/send", methods=["POST"])
 def sendreview():
     restaurant_id = request.form["restaurant_id"]

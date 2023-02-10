@@ -12,6 +12,7 @@ The app has the following functionality:
 - Users can see top restaurants based on the average rating
 - Admins can add new restaurants and tags
 - Admins can delete reviews
+- Admins can delete restaurants
 
 ## Status
 
@@ -20,6 +21,8 @@ The app is still under development. The following features are added:
 - [x] Users can login or create a new account
 - [x] Users can see the restaurants in a list
 - [x] Users can add new restaurant
+- [x] Users can add reviews
+- [x] Admins can delete reviews and restaurants
 
 App is deployed to Fly.io: https://restaurant-review-app.fly.dev/
 

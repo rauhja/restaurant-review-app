@@ -27,6 +27,7 @@
                         <th scope="col">City</th>
                         <th scope="col">Website</th>
                         <th scope="col">Rating</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,6 +39,11 @@
                         <td>{{ restaurant.city }}</td>
                         <td><a href="{{restaurant.website}}">{{ restaurant.website }}</a></td>
                         <td>rating</td>
+                        {% if session.user_role == 1 %}
+                        <td>
+                            <a href="{{url_for('deleterestaurant', id=restaurant.id)}}" class="btn btn-danger">Delete</a>
+                        </td>
+                        {% endif %}
                     </tr>
                     {% endfor %}
                 </tbody>
