@@ -29,3 +29,8 @@ def deletereview(id):
     except:
         return False
     return True
+
+def getscore(id):
+    sql = "SELECT AVG(rating)::numeric(10,2) AS avg_rating FROM reviews WHERE restaurant_id=:id"
+    result = db.session.execute(sql, {"id":id})
+    return result.fetchone()

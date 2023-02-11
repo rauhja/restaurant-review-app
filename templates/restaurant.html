@@ -11,7 +11,7 @@
       <h6 class="card-subtitle text-muted">{{ restaurant.address }}</h6>
       <p class="card-text">{{ restaurant.postnumber }} {{ restaurant.city }}</p>
       <a href="{{restaurant.website}}"class="card-link">{{ restaurant.website }}</a>
-      <h2 class="sr-only mt-3">Score: </h2>
+      <h2 class="sr-only mt-3">Score: {%if score.avg_rating == None %} No score. {% else %} {{ score.avg_rating }} {%endif%}</h2>
     </div>
     <div class="row mt-3">
         <form class="row g-3" method="post" action="/send">

@@ -70,11 +70,11 @@ def addrestaurant():
 
 @app.route("/restaurants")
 def listrestaurants():
-    return render_template("restaurants.html", restaurants=restaurants.list())
+    return render_template("restaurants.html", restaurants=restaurants.listall())
 
 @app.route("/restaurants/<int:id>")
 def restaurant(id):
-    return render_template("restaurant.html", restaurant=restaurants.get(id), reviews=reviews.getreview(id))
+    return render_template("restaurant.html", restaurant=restaurants.get(id), reviews=reviews.getreview(id), score=reviews.getscore(id))
 
 @app.route("/deleterestaurant/<int:id>")
 def deleterestaurant(id):

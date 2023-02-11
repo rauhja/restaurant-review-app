@@ -20,9 +20,10 @@ The app is still under development. The following features are added:
 
 - [x] Users can login or create a new account
 - [x] Users can see the restaurants in a list
-- [x] Users can add new restaurant
+- [x] Admins can add new restaurant
 - [x] Users can add reviews
 - [x] Admins can delete reviews and restaurants
+- [x] Users can search restaurants
 
 App is deployed to Fly.io: https://restaurant-review-app.fly.dev/
 

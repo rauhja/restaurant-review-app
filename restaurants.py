@@ -33,6 +33,11 @@ def delete(id):
     return True
 
 def search(query):
-    sql = "SELECT * FROM restaurants WHERE name LIKE :query ORDER BY name"
+    sql = "SELECT r.id, r.name, r.city, r.website, AVG(rv.rating)::numeric(10,2) AS avg_rating FROM restaurants r LEFT JOIN reviews rv ON rv.restaurant_id = r.id WHERE r.name LIKE :query GROUP BY r.id, r.name ORDER BY avg_rating DESC NULLS LAST"
     result = db.session.execute(sql, {"query":"%" + query + "%"})
+    return result.fetchall()
+
+def listall():
+    sql = "SELECT r.id, r.name, r.city, r.website, AVG(rv.rating)::numeric(10,2) AS avg_rating FROM restaurants r LEFT JOIN reviews rv ON rv.restaurant_id = r.id GROUP BY r.id, r.name ORDER BY avg_rating DESC NULLS LAST"
+    result = db.session.execute(sql)
     return result.fetchall()
