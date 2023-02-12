@@ -20,10 +20,10 @@ def get(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()
 
-def getid(name):
-    sql = "SELECT id FROM restaurants WHERE name=:name"
-    result = db.session.execute(sql, {"name":name})
-    return result.fetchone()[0]
+def getid(name, address):
+    sql = "SELECT id FROM restaurants WHERE name=:name AND address=:address"
+    result = db.session.execute(sql, {"name":name, "address":address})
+    return result.fetchone()
 
 def delete(id):
     try:

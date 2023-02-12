@@ -61,11 +61,13 @@ def addrestaurant():
         longitude = request.form["longitude"]
         website = request.form["website"]
         restaurant_tags = request.form.getlist("tags")
+        if restaurants.getid(name, address):
+            flash("Restaurant already exists")
+            return redirect("/newrestaurant")
         if restaurants.add(name, address, postnumber, city, latitude, longitude, website):
             for tag in restaurant_tags:
                 id = restaurants.getid(name)
-                print(id)
-                tags.addtag(id, tag)
+                tags.addtag(id[0], tag)
             return redirect("/restaurants")
         else:
             flash("Error")
