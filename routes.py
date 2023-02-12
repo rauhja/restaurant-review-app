@@ -3,7 +3,7 @@ from flask import render_template, request, redirect, session, flash
 import users
 import restaurants
 import reviews
-
+import tags
 
 @app.route("/")
 def index():
@@ -52,8 +52,6 @@ def signup():
 
 @app.route("/newrestaurant", methods=["GET", "POST"])
 def addrestaurant():
-    if request.method == "GET":
-        return render_template("newrestaurant.html")
     if request.method == "POST":
         name = request.form["name"]
         address = request.form["address"]
@@ -62,11 +60,17 @@ def addrestaurant():
         latitude = request.form["latitude"]
         longitude = request.form["longitude"]
         website = request.form["website"]
+        restaurant_tags = request.form.getlist("tags")
         if restaurants.add(name, address, postnumber, city, latitude, longitude, website):
-            return redirect("/newrestaurant")
+            for tag in restaurant_tags:
+                id = restaurants.getid(name)
+                print(id)
+                tags.addtag(id, tag)
+            return redirect("/restaurants")
         else:
-            flash("Restaurant already exists")
+            flash("Error")
             return redirect("/newrestaurant")
+    return render_template("newrestaurant.html")
 
 @app.route("/restaurants")
 def listrestaurants():
@@ -74,7 +78,7 @@ def listrestaurants():
 
 @app.route("/restaurants/<int:id>")
 def restaurant(id):
-    return render_template("restaurant.html", restaurant=restaurants.get(id), reviews=reviews.getreview(id), score=reviews.getscore(id))
+    return render_template("restaurant.html", restaurant=restaurants.get(id), reviews=reviews.getreview(id), score=reviews.getscore(id), tags=tags.getrestauranttag(id))
 
 @app.route("/deleterestaurant/<int:id>")
 def deleterestaurant(id):

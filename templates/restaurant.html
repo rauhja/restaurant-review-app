@@ -7,13 +7,20 @@
 <div class="container">
   <div class="rest-list">
     <div class="row">
-      <h5 class="card-title">{{ restaurant.name }}</h5>
+      <h4 class="card-title">{{ restaurant.name }}</h4>
       <h6 class="card-subtitle text-muted">{{ restaurant.address }}</h6>
       <p class="card-text">{{ restaurant.postnumber }} {{ restaurant.city }}</p>
       <a href="{{restaurant.website}}"class="card-link">{{ restaurant.website }}</a>
       <h2 class="sr-only mt-3">Score: {%if score.avg_rating == None %} No score. {% else %} {{ score.avg_rating }} {%endif%}</h2>
+      <div class="d-flex justify-content-center">
+        <div class="col">
+          {% for tag in tags %}
+            <span class="badge text-bg-info fw-normal">{{ tag.name }}</span>
+          {% endfor %}
+        </div>
+      </div>
     </div>
-    <div class="row mt-3">
+    <div class="row mt-2">
         <form class="row g-3" method="post" action="/send">
           <h3 class="sr-only">Leave review</h3>
             {% with messages = get_flashed_messages() %}

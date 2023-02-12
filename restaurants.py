@@ -20,6 +20,11 @@ def get(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchone()
 
+def getid(name):
+    sql = "SELECT id FROM restaurants WHERE name=:name"
+    result = db.session.execute(sql, {"name":name})
+    return result.fetchone()[0]
+
 def delete(id):
     try:
         user_role = users.user_role()
