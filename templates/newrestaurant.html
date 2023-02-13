@@ -2,7 +2,7 @@
 {% block content %}
 <div class="newrest-clean">
   <h2 class="text-light">Add Restaurant</h2>
-    <form class="row g-3" method="post" action="/newrestaurant">
+    <form class="row g-3 shadow" method="post" action="/newrestaurant">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <div class="alert alert-danger" role="alert">

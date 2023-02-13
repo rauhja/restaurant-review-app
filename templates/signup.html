@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="login-clean">
-    <form method="post" action="/signup">
+    <form class="shadow" method="post" action="/signup">
         <h2 class="sr-only">Sign Up</h2>
         {% with messages = get_flashed_messages() %}
         {% if messages %}

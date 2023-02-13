@@ -67,7 +67,7 @@ def addrestaurant():
         if restaurants.add(name, address, postnumber, city, latitude, longitude, website):
             for tag in restaurant_tags:
                 id = restaurants.getid(name)
-                tags.addtag(id[0], tag)
+                tags.addtagtorestaurant(id[0], tag)
             return redirect("/restaurants")
         else:
             flash("Error")
@@ -121,3 +121,7 @@ def deletereview(id, restaurant_id):
 @app.route("/result")
 def result():
     return render_template("restaurants.html", restaurants=restaurants.search(request.args["query"]))
+
+@app.route("/searchbytag")
+def searchbytag():
+    return render_template("restaurants.html", restaurants=restaurants.searchbytag(request.args["type"]))

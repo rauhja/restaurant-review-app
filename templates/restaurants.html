@@ -14,11 +14,32 @@
                         </svg>
                     </span>
                 </div>
+                <div class="row">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-4">
+                            <hr class="border opacity-50">
+                        </div>
+                        <div class="col-4">
+                            <p class="text-light mt-3"> Or by type:</p>
+                        </div>
+                        <div class="col-4">
+                            <hr class="border opacity-50">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <a href="{{url_for('searchbytag', type='European')}}" class="btn btn-info btn-sm text-light">European</a>
+                        <a href="{{url_for('searchbytag', type='Fast Food')}}" class="btn btn-info btn-sm text-light">Fast Food</a>
+                        <a href="{{url_for('searchbytag', type='Student Lunch')}}" class="btn btn-info btn-sm text-light">Student Lunch</a>
+                        <a href="{{url_for('searchbytag', type='American')}}" class="btn btn-info btn-sm text-light">American</a>
+                        <a href="{{url_for('searchbytag', type='Asian')}}" class="btn btn-info btn-sm text-light">Asian</a>
+                        <a href="{{url_for('searchbytag', type='Mexican')}}" class="btn btn-info btn-sm text-light">Mexican</a>
+                    </div>
+                </div>
             </form>
         </div>
     </div>
     <h2 class="text-light mt-5">Restaurants</h2>
-    <div class="rest-list">
+    <div class="rest-list shadow">
         <div class="row">
             <table class="table table-hover mt-2">
                 <thead>

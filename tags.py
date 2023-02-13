@@ -10,9 +10,8 @@ def getrestauranttag(id):
     result = db.session.execute(sql, {"id":id})
     return result.fetchall()
 
-def addtag(id, tag):
+def addtagtorestaurant(id, tag):
     try:
-        print("id: " + str(id))
         sql = "INSERT INTO restaurant_tags (restaurant_id, tag_id) VALUES (:restaurant_id, :tag_id)"
         db.session.execute(sql, {"restaurant_id":id, "tag_id":tag})
         db.session.commit()

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="login-clean">
-    <form method="post" action="/login">
+    <form class="shadow" method="post" action="/login">
         <h2 class="sr-only">Login</h2>
         {% with messages = get_flashed_messages() %}
         {% if messages %}

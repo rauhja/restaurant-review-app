@@ -42,6 +42,11 @@ def search(query):
     result = db.session.execute(sql, {"query":"%" + query + "%"})
     return result.fetchall()
 
+def searchbytag(query):
+    sql = "SELECT r.id, r.name, r.city, r.website, AVG(rv.rating)::numeric(10,2) AS avg_rating FROM restaurants r LEFT JOIN reviews rv ON rv.restaurant_id = r.id, tags t, restaurant_tags rt WHERE r.id=rt.restaurant_id AND t.id=rt.tag_id AND t.name LIKE :query GROUP BY r.id, r.name ORDER BY avg_rating DESC NULLS LAST"
+    result = db.session.execute(sql, {"query":"%" + query + "%"})
+    return result.fetchall()
+
 def listall():
     sql = "SELECT r.id, r.name, r.city, r.website, AVG(rv.rating)::numeric(10,2) AS avg_rating FROM restaurants r LEFT JOIN reviews rv ON rv.restaurant_id = r.id GROUP BY r.id, r.name ORDER BY avg_rating DESC NULLS LAST"
     result = db.session.execute(sql)
