@@ -66,7 +66,7 @@ def addrestaurant():
             return redirect("/newrestaurant")
         if restaurants.add(name, address, postnumber, city, latitude, longitude, website):
             for tag in restaurant_tags:
-                id = restaurants.getid(name)
+                id = restaurants.getid(name, address)
                 tags.addtagtorestaurant(id[0], tag)
             return redirect("/restaurants")
         else:
