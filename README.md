@@ -24,6 +24,8 @@ The app is still under development. The following features are added:
 - [x] Users can add reviews
 - [x] Admins can delete reviews and restaurants
 - [x] Users can search restaurants
+- [x] Users can search restaurants by tags
+- [x] Users can see the restaurants from map
 
 App is deployed to Fly.io: https://restaurant-review-app.fly.dev/
 

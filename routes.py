@@ -4,10 +4,12 @@ import users
 import restaurants
 import reviews
 import tags
+from os import getenv
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    map_key = getenv("MAPBOX_ACCESS_TOKEN")
+    return render_template("index.html", data=restaurants.listformap(), map_key=map_key)
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -80,7 +82,8 @@ def listrestaurants():
 
 @app.route("/restaurants/<int:id>")
 def restaurant(id):
-    return render_template("restaurant.html", restaurant=restaurants.get(id), reviews=reviews.getreview(id), score=reviews.getscore(id), tags=tags.getrestauranttag(id))
+    return render_template("restaurant.html", restaurant=restaurants.get(id), reviews=reviews.getreview(id),
+                           score=reviews.getscore(id), tags=tags.getrestauranttag(id))
 
 @app.route("/deleterestaurant/<int:id>")
 def deleterestaurant(id):

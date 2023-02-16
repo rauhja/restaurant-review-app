@@ -1,9 +1,53 @@
 {% extends "base.html" %}
 {% block content %}
 {% if session.user_id %}
+<h2 class="text-light">Find top restaurants near you</h2>
+<div class="container mt-5">
+    <div class="map-box shadow">
+        <div id='map'>
+        </div>
+    </div>
+</div>
+<script>
 
+mapboxgl.accessToken = '{{ map_key }}';
+
+const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v11',
+    center: [24.94, 60.19],
+    zoom: 11
+});
+
+const geojson = {{ data|safe }}
+console.log(geojson)
+
+for (const feature of geojson.features) {
+  const el = document.createElement('div');
+  el.className = 'marker';
+
+  new mapboxgl.Marker(el)
+  .setLngLat(feature.geometry.coordinates)
+  .setPopup(
+    new mapboxgl.Popup({ offset: 25 })
+      .setHTML(
+        `<a href="/restaurants/${feature.properties.id}">${feature.properties.name}</a><br>
+        <span>${feature.properties.address}</span><br>
+        <span>${feature.properties.postnumber}</span>
+        <span>${feature.properties.city}</span>`
+      )
+  )
+  .addTo(map);
+}
+
+
+</script>
 {% else %}
 <h2 class="text-light">Find top restaurants near you</h2>
+<div class="position-absolute top-50 start-50 translate-middle">
+  <h5 class="text-light">Please <a href="/login">login</a> to see the restaurants</h5>
+  <h5 class="text-light">If you don't have an account, please <a href="/signup">sign up</a></h5>
+</div>
 {% endif %}
 
 {% endblock %}
