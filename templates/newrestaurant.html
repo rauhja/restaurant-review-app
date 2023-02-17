@@ -38,7 +38,7 @@
         <div class="col-12 mt-2">
           <input class="form-control" type="text" name="website" placeholder="Website" required>
         </div>
-        <div class="btn-group mt-3" role="group">
+        <div class="btn-group flex-wrap mt-3" role="group">
           <input type="checkbox" class="btn-check" id="european" autocomplete="off" value="1" name="tags">
           <label class="btn btn-outline-primary" for="european">European</label>
           <input type="checkbox" class="btn-check" id="fastfood" autocomplete="off" value="2" name="tags">
@@ -58,6 +58,7 @@
         <div class="col-6">
           <button class="btn btn-primary btn-block" type="submit">Add</button>
         </div>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
 </div>
 {% endblock %}

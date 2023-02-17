@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect, session, flash
+from flask import render_template, request, redirect, session, flash, abort
 import users
 import restaurants
 import reviews
@@ -55,6 +55,8 @@ def signup():
 @app.route("/newrestaurant", methods=["GET", "POST"])
 def addrestaurant():
     if request.method == "POST":
+        if session["csrf_token"] != request.form["csrf_token"]:
+            abort(403)
         name = request.form["name"]
         address = request.form["address"]
         postnumber = request.form["postnumber"]
@@ -95,6 +97,8 @@ def deleterestaurant(id):
 
 @app.route("/send", methods=["POST"])
 def sendreview():
+    if session["csrf_token"] != request.form["csrf_token"]:
+        abort(403)
     restaurant_id = request.form["restaurant_id"]
     review = request.form["review"]
     if review == "":

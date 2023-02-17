@@ -40,7 +40,7 @@
     </div>
     <h2 class="text-light mt-5">Restaurants</h2>
     <div class="rest-list shadow">
-        <div class="row">
+        <div class="table-responsive">
             <table class="table table-hover mt-2">
                 <thead>
                     <tr>
@@ -58,7 +58,7 @@
                     <tr>
                         <td><a href="/restaurants/{{ restaurant.id }}">{{ restaurant.name }}</a></td>
                         <td>{{ restaurant.city }}</td>
-                        <td><a href="{{restaurant.website}}">{{ restaurant.website }}</a></td>
+                        <td><a href="{{restaurant.website}}" class="wrapped">{{ restaurant.website }}</a></td>
                         <td>{%if restaurant.avg_rating == None %} - {% else %} {{ restaurant.avg_rating }} {%endif%}</td>
                         {% if session.user_role == 1 %}
                         <td>

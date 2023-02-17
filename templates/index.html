@@ -20,7 +20,6 @@ const map = new mapboxgl.Map({
 });
 
 const geojson = {{ data|safe }}
-console.log(geojson)
 
 for (const feature of geojson.features) {
   const el = document.createElement('div');
