@@ -23,7 +23,6 @@ def logout():
     del session["user_id"]
     del session["user_name"]
     del session["user_role"]
-    del session["csrf_token"]
     
 def signup(username, password):
     hash_value = generate_password_hash(password)
